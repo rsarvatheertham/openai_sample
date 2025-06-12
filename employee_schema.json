@@ -1,0 +1,73 @@
+{
+  "tables": {
+    "employees": {
+      "fields": {
+        "employee_id": "INT (PK)",
+        "first_name": "VARCHAR(50)",
+        "last_name": "VARCHAR(50)",
+        "email": "VARCHAR(100) UNIQUE",
+        "phone_number": "VARCHAR(20)",
+        "date_of_birth": "DATE",
+        "gender": "ENUM('Male', 'Female', 'Other')",
+        "hire_date": "DATE",
+        "job_title_id": "INT (FK \u2192 job_titles.job_title_id)",
+        "department_id": "INT (FK \u2192 departments.department_id)",
+        "manager_id": "INT (FK \u2192 employees.employee_id)",
+        "employment_type": "ENUM('Full-Time', 'Part-Time', 'Contract', 'Intern')",
+        "location_id": "INT (FK \u2192 locations.location_id)",
+        "is_active": "BOOLEAN",
+        "created_at": "TIMESTAMP",
+        "updated_at": "TIMESTAMP"
+      }
+    },
+    "job_titles": {
+      "fields": {
+        "job_title_id": "INT (PK)",
+        "title_name": "VARCHAR(100) UNIQUE"
+      }
+    },
+    "departments": {
+      "fields": {
+        "department_id": "INT (PK)",
+        "department_name": "VARCHAR(100) UNIQUE"
+      }
+    },
+    "locations": {
+      "fields": {
+        "location_id": "INT (PK)",
+        "location_name": "VARCHAR(100)",
+        "address": "TEXT",
+        "city": "VARCHAR(100)",
+        "state": "VARCHAR(100)",
+        "country": "VARCHAR(100)",
+        "postal_code": "VARCHAR(20)"
+      }
+    },
+    "salaries": {
+      "fields": {
+        "salary_id": "INT (PK)",
+        "employee_id": "INT (FK \u2192 employees.employee_id)",
+        "salary_amount": "DECIMAL(10,2)",
+        "start_date": "DATE",
+        "end_date": "DATE"
+      }
+    },
+    "skills": {
+      "fields": {
+        "skill_id": "INT (PK)",
+        "skill_name": "VARCHAR(100) UNIQUE"
+      }
+    },
+    "employee_skills": {
+      "fields": {
+        "employee_id": "INT (FK \u2192 employees.employee_id)",
+        "skill_id": "INT (FK \u2192 skills.skill_id)",
+        "proficiency_level": "ENUM('Beginner', 'Intermediate', 'Advanced', 'Expert')"
+      },
+      "primary_key": [
+        "employee_id",
+        "skill_id"
+      ]
+    }
+  }
+}
